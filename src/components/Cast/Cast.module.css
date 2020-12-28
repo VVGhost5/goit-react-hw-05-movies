@@ -1,0 +1,9 @@
+.list_item {
+  padding-top: 10px;
+  border-bottom: 1px solid black;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+}
