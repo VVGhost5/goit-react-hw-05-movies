@@ -10,9 +10,9 @@ axios.defaults.params = {
 
 const getPopularMovies = async () => {
   try {
-    const popularMovies = await axios.get("/trending/movie/day");
+    const { data } = await axios.get("/trending/movie/day");
 
-    return popularMovies.data.results;
+    return data.results;
   } catch (error) {
     console.log({ error });
     return [];
@@ -21,8 +21,8 @@ const getPopularMovies = async () => {
 
 const getMovies = async (query) => {
   try {
-    const movie = await axios.get(`/search/movie?query=${query}&page=1`);
-    return movie.data.results;
+    const { data } = await axios.get(`/search/movie?query=${query}&page=1`);
+    return data.results;
   } catch (error) {
     console.log(error);
     return [];
@@ -31,8 +31,8 @@ const getMovies = async (query) => {
 
 const getReviews = async (id) => {
   try {
-    const reviews = await axios.get(`/movie/${id}/reviews`);
-    return reviews.data;
+    const { data } = await axios.get(`/movie/${id}/reviews`);
+    return data;
   } catch (error) {
     console.log(error);
     return [];
@@ -41,8 +41,8 @@ const getReviews = async (id) => {
 
 const getCredits = async (id) => {
   try {
-    const credits = await axios.get(`/movie/${id}/credits`);
-    return credits.data.cast;
+    const { data } = await axios.get(`/movie/${id}/credits`);
+    return data.cast;
   } catch (error) {
     console.log(error);
     return [];
@@ -51,8 +51,8 @@ const getCredits = async (id) => {
 
 const getMovieDetails = async (id) => {
   try {
-    const movieDetails = await axios.get(`/movie/${id}`);
-    return movieDetails.data;
+    const { data } = await axios.get(`/movie/${id}`);
+    return data;
   } catch (error) {
     console.log(error);
     return [];
