@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { useRouteMatch, Route, NavLink, useParams } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 
 import styles from "./MovieDetailsPage.module.css";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const FilmDetails = ({ currentFilm }) => {
   const Cast = lazy(() => import("../Cast//Cast"));
@@ -47,13 +48,15 @@ const FilmDetails = ({ currentFilm }) => {
         </li>
       </ul>
 
-      <Route path={`${path}/cast`}>
-        {currentFilm && <Cast id={movieId} />}
-      </Route>
+      <Suspense fallback={<NotFoundPage />}>
+        <Route path={`${path}/cast`}>
+          {currentFilm && <Cast id={movieId} />}
+        </Route>
 
-      <Route path={`${path}/reviews`}>
-        {currentFilm && <Reviews id={movieId} />}
-      </Route>
+        <Route path={`${path}/reviews`}>
+          {currentFilm && <Reviews id={movieId} />}
+        </Route>
+      </Suspense>
     </div>
   );
 };

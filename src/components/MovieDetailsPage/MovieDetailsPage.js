@@ -6,8 +6,8 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useState, useEffect, lazy, Suspense } from "react";
 
 import Loading from "../Loading/Loading";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
-const NotFoundPage = lazy(() => import("../NotFoundPage//NotFoundPage"));
 const FilmDetails = lazy(() => import("../MovieDetailsPage/FilmsDetails"));
 
 const MovieDetailsPage = () => {
@@ -49,14 +49,6 @@ const MovieDetailsPage = () => {
         ) : (
           <NotFoundPage />
         )}
-
-        {/* <Route path={`${path}/cast`}>
-          {currentFilm && <Cast id={movieId} />}
-        </Route>
-
-        <Route path={`${path}/reviews`}>
-          {currentFilm && <Reviews id={movieId} />}
-        </Route> */}
       </Suspense>
     </>
   );
